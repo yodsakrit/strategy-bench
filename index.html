@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategy Bench</title>
+<meta name="description" content="Strategy Bench ขาย Expert Advisor (EA) สำหรับ MetaTrader 5 แบบไฟล์ดาวน์โหลด พร้อมผลทดสอบที่เปิดเผยทั้งด้านดีและด้านเสีย">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one narrow reading column; products as two equal cards; policies as plain numbered sections */
+:root{
+  --bg:#f6f7f5; --surface:#ffffff; --ink:#1c2321; --muted:#5b6662; --line:#dfe4e1;
+  --accent:#1f6f5c; --accent-ink:#ffffff; --warn-bg:#fbf3e4; --warn-ink:#7a4b06;
+  --body:"IBM Plex Sans Thai", "Leelawadee UI", "Tahoma", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "Consolas", monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121715; --surface:#1a201e; --ink:#e6ece9; --muted:#9aa7a2; --line:#2c3532;
+    --accent:#5cc2a6; --accent-ink:#0d1412; --warn-bg:#2a2214; --warn-ink:#f0c879; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121715; --surface:#1a201e; --ink:#e6ece9; --muted:#9aa7a2; --line:#2c3532;
+  --accent:#5cc2a6; --accent-ink:#0d1412; --warn-bg:#2a2214; --warn-ink:#f0c879; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+header .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+.brand{font-weight:600;font-size:18px;letter-spacing:.01em}
+nav{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px}
+nav a,a{color:var(--accent)}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;line-height:1.3}
+h1{font-size:28px;margin:36px 0 8px}
+h2{font-size:21px;margin:0 0 12px}
+h3{font-size:18px;margin:0}
+.lead{color:var(--muted);max-width:62ch;margin:0 0 28px}
+section{padding:28px 0;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.price{font-family:var(--mono);font-size:22px;font-variant-numeric:tabular-nums}
+.price small{font-family:var(--body);font-size:13px;color:var(--muted)}
+.card ul{margin:0;padding-left:20px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-size:14px;margin:0}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border-radius:6px;padding:10px 12px;font-size:14px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.btn{display:inline-block;text-decoration:none;border-radius:6px;padding:9px 16px;font-weight:500;font-size:15px;border:1px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent);background:transparent}
+.soon{font-size:14px;color:var(--muted);align-self:center}
+ol.policy{padding-left:22px;margin:0;max-width:68ch}
+ol.policy li{margin-bottom:8px}
+.en{font-size:14px;color:var(--muted);max-width:68ch}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:14px;color:var(--muted)}
+@media (max-width:400px){ h1{font-size:24px} }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">Strategy Bench</div>
+    <nav aria-label="หัวข้อในหน้า">
+      <a href="#products">สินค้า</a><a href="#delivery">การรับไฟล์</a><a href="#refund">คืนเงิน</a><a href="#terms">เงื่อนไข</a><a href="#privacy">ข้อมูลส่วนบุคคล</a><a href="#contact">ติดต่อ</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>EA สำหรับ MetaTrader 5 พร้อมผลทดสอบที่เปิดเผยครบ</h1>
+  <p class="lead">Strategy Bench ขายไฟล์ Expert Advisor (.ex5) สำหรับ MT5 แบบดาวน์โหลด จ่ายครั้งเดียว ไม่มีค่ารายเดือน เราไม่รับฝากเงิน ไม่บริหารเงินแทนลูกค้า และไม่รับประกันกำไร ทุกตัวมีรุ่น Demo ให้ลองบนบัญชี demo ฟรีก่อนซื้อ</p>
+
+  <section id="products" aria-labelledby="h-products">
+    <h2 id="h-products">สินค้า</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>ActionZone L</h3>
+        <div class="price">฿5,999 <small>จ่ายครั้งเดียว</small></div>
+        <p style="margin:0">EA ตามเทรนด์บนกราฟ D1 ถือฝั่งซื้ออย่างเดียว ดูแล 13 ตลาดจากกราฟเดียว (ทอง เงิน BTC ETH ดัชนี ค่าเงิน น้ำมัน) เข้าเมื่อแท่ง D1 เปลี่ยนเป็นสีเขียว ออกเมื่อเปลี่ยนเป็นสีแดง</p>
+        <dl class="facts">
+          <dt>ช่วงทดสอบ</dt><dd>2022–2026 (ย้อนหลัง)</dd>
+          <dt>ทุนที่ออกแบบไว้</dt><dd>$18,000</dd>
+          <dt>ขาดทุนสะสมสูงสุด</dt><dd>≈ $4,500</dd>
+          <dt>เดือนที่กำไร</dt><dd>≈ 54%</dd>
+        </dl>
+        <div class="warn">ยังไม่ผ่าน forward test กำไรส่วนใหญ่มาจากทอง ไม่มี SL ตายตัว ทดสอบบนข้อมูลของ Exness เท่านั้น</div>
+        <div class="actions" data-product="ActionZone L">
+          <a class="btn ghost" href="https://drive.google.com/file/d/1_-tdI7XNHNHW2bf5p0l-1eI0vshEI-do/view" target="_blank" rel="noopener">ดาวน์โหลดรุ่น Demo ฟรี</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>TradeGuard</h3>
+        <div class="price">฿3,290 <small>จ่ายครั้งเดียว</small></div>
+        <p style="margin:0">EA คุมความเสี่ยงที่ทำงานคู่กับการเทรดของคุณ จำกัดขาดทุนต่อไม้และต่อวัน ห้ามถัวเฉลี่ย จำกัดจำนวนไม้ต่อวัน และปิดไม้ก่อนหมดเวลาเทรด มีโหมด dry run ให้ดูก่อนว่าจะทำอะไรโดยไม่แตะไม้</p>
+        <dl class="facts">
+          <dt>ค่าเริ่มต้น</dt><dd>ต่อไม้ 0.5% · ต่อวัน 1%</dd>
+          <dt>ใช้กับ</dt><dd>ทุกไม้ในบัญชี MT5</dd>
+        </dl>
+        <div class="warn">ช่วยจำกัดความเสียหาย แต่ไม่ได้ทำให้ระบบที่ขาดทุนกลายเป็นกำไร ค่าเริ่มต้นจะแก้และปิดไม้จริงในบัญชี</div>
+        <div class="actions" data-product="TradeGuard">
+          <a class="btn ghost" href="https://drive.google.com/file/d/1hECssnhq4FrYstoMbzhFz4n_Oa8qOkxN/view" target="_blank" rel="noopener">ดาวน์โหลดรุ่น Demo ฟรี</a>
+        </div>
+      </article>
+    </div>
+    <p class="lead" style="margin:16px 0 0">ใช้ได้กับ MetaTrader 5 บน Windows หรือ VPS เท่านั้น ไม่รองรับ MT4 รุ่น Demo ทำงานบนบัญชี demo และ Strategy Tester ไม่จำกัดเวลา ราคาเป็นเงินบาท</p>
+  </section>
+
+  <section id="delivery" aria-labelledby="h-delivery">
+    <h2 id="h-delivery">การชำระเงินและการรับไฟล์</h2>
+    <ol class="policy">
+      <li>ชำระผ่าน Stripe ด้วย PromptPay หรือบัตรเครดิต/เดบิต เราไม่เห็นและไม่เก็บข้อมูลบัตร</li>
+      <li>จ่ายเสร็จ หน้ายืนยันจะแสดงลิงก์ดาวน์โหลดไฟล์ zip ทันที และ Stripe ส่งใบเสร็จไปที่อีเมลที่คุณกรอก</li>
+      <li>ในไฟล์มี EA (.ex5), set file และคู่มือติดตั้งภาษาไทย</li>
+      <li>ถ้าไม่ได้รับลิงก์หรือโหลดไม่ได้ ส่งอีเมลมาพร้อมเลขใบเสร็จ เราจะส่งไฟล์ให้ภายใน 1 วันทำการ</li>
+    </ol>
+  </section>
+
+  <section id="refund" aria-labelledby="h-refund">
+    <h2 id="h-refund">นโยบายคืนเงิน</h2>
+    <ol class="policy">
+      <li>คืนเงินเต็มจำนวนเมื่อไฟล์เปิดใช้งานบน MT5 ไม่ได้ และเราแก้ไขให้ใช้ได้ไม่สำเร็จภายใน 7 วันนับจากวันที่คุณแจ้ง</li>
+      <li>แจ้งขอคืนเงินภายใน 30 วันหลังซื้อ ทางอีเมลด้านล่าง พร้อมเลขใบเสร็จและรายละเอียดปัญหา</li>
+      <li>ไม่คืนเงินในกรณีผลการเทรดขาดทุน เปลี่ยนใจหลังได้รับไฟล์ หรือโบรกไม่มีตลาดที่ EA ใช้ เพราะทั้งหมดนี้ตรวจได้ก่อนซื้อด้วยรุ่น Demo ฟรี</li>
+      <li>เงินคืนจะกลับไปทางเดิมที่จ่ายผ่าน Stripe ระยะเวลาขึ้นกับธนาคารหรือผู้ออกบัตร</li>
+    </ol>
+  </section>
+
+  <section id="terms" aria-labelledby="h-terms">
+    <h2 id="h-terms">เงื่อนไขการใช้งาน</h2>
+    <ol class="policy">
+      <li>ผู้ซื้อใช้ไฟล์กับบัญชีของตัวเองได้ไม่จำกัดจำนวน ห้ามแจก ขายต่อ หรือเผยแพร่ไฟล์</li>
+      <li>EA เป็นเครื่องมือซอฟต์แวร์ ไม่ใช่คำแนะนำการลงทุน และไม่ใช่บริการบริหารเงิน การตัดสินใจเปิดใช้บนบัญชีจริงเป็นของผู้ใช้</li>
+      <li>ผลทดสอบย้อนหลังไม่รับประกันผลในอนาคต การเทรดมีความเสี่ยงสูง อาจขาดทุนเกินกว่าที่ทดสอบไว้</li>
+      <li>ผลขึ้นกับโบรก สเปรด swap ความเร็วการเชื่อมต่อ และการเปิด MT5 ทิ้งไว้ เราไม่รับผิดชอบความเสียหายจากการใช้งาน</li>
+      <li>ได้อัปเดตเวอร์ชันฟรี 1 ปีนับจากวันซื้อ ส่งให้ทางอีเมลที่ใช้ซื้อ</li>
+    </ol>
+  </section>
+
+  <section id="privacy" aria-labelledby="h-privacy">
+    <h2 id="h-privacy">ข้อมูลส่วนบุคคล</h2>
+    <ol class="policy">
+      <li>เราได้รับชื่อ อีเมล และรายการที่ซื้อจาก Stripe เพื่อส่งไฟล์ ออกใบเสร็จ และตอบคำถาม</li>
+      <li>ข้อมูลบัตรอยู่กับ Stripe เราไม่เห็นและไม่เก็บ</li>
+      <li>เราไม่ขายหรือส่งต่อข้อมูลให้ใคร ขอลบข้อมูลได้ทางอีเมลด้านล่าง</li>
+    </ol>
+  </section>
+
+  <section id="contact" aria-labelledby="h-contact">
+    <h2 id="h-contact">ติดต่อ</h2>
+    <p style="margin:0">อีเมล: <a href="mailto:yodsakrit1908@gmail.com">yodsakrit1908@gmail.com</a><br>ตอบภายใน 1 วันทำการ (จันทร์–ศุกร์)</p>
+  </section>
+
+  <section aria-labelledby="h-en">
+    <h2 id="h-en">About (English)</h2>
+    <p class="en">Strategy Bench sells downloadable Expert Advisor files (.ex5) for MetaTrader 5: ActionZone L (฿5,999), a D1 long-only trend-following EA, and TradeGuard (฿3,290), a risk-limit EA. One-time payment via Stripe (PromptPay or card); the download link appears on the confirmation page right after payment. We do not hold or manage customer funds, give investment advice or guarantee profits. Refunds: full refund if the file cannot run on MT5 and we cannot fix it within 7 days; request within 30 days of purchase. Contact: yodsakrit1908@gmail.com.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Strategy Bench · ขายไฟล์ซอฟต์แวร์สำหรับ MetaTrader 5 · ผลทดสอบย้อนหลังไม่รับประกันผลในอนาคต</div>
+</footer>
+</body>
+</html>
